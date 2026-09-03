@@ -1,0 +1,68 @@
+# Welcome to the UCSC Genome Browser example hub. It includes example stanzas
+# for various track types and highlight both the required and commonly
+# used settings for these. The example data files below have been trimmed
+# to only include data at the default hg38 position, chr7:155,799,529-155,812,871.
+
+# This example hub is designed in a way so that you can modify the settings
+# to fit your needs
+# To quickly remove the comment (#) lines, after downloading the hub.txt run:
+# grep -v ^# hub.txt > hub.no_comments.txt
+
+# This example also uses the "useOneFile on" setting, which allows you to use a
+# single file if all of your tracks are on a single genome instead of needing
+# separate hub.txt, genomes.txt, and trackDb.txt
+
+#####
+# hub config
+#####
+
+# This stanza controls overall details for the hub
+# a short, unique identifier for your hub, cannot contain any spaces
+hub hubBasics
+# These label lines control how your hub is labeled in the Genome Browser interface
+shortLabel Example Hub
+longLabel Example Hub with Basic Settings
+# As noted above, this setting allows you place everything in a single file
+# You can only use this setting if all your data is on a single genome assembly
+useOneFile on
+# It is useful to include a contact email in case people have questions about your hub
+email genome-www@soe.ucsc.edu
+
+#####
+# genome config
+#####
+
+# with useOneFile on, you can specify a single genome here
+# otherwise if you have multiple genomes, you will need a separate genomes.txt that
+# lists all the genomes out & a separate trackDb.txt for each genome
+# For details, see: https://genome.ucsc.edu/goldenPath/help/hgTrackHubHelp.html#Setup
+genome hg38
+
+#####
+# bigBed
+#####
+
+# This first example is a basic bigBed with the required settings
+# the names after the 'track' setting must be unique for every track in this file and cannot contain any spaces
+track bigBedRequiredSettings
+# label lines control how your tracks are labeled in the interface
+shortLabel bigBed Required Settings
+longLabel A bigBed Example with Required Settings
+# visibility modes include hide/dense/squish/pack/full
+# pack is the recommended default display mode for most tracks
+visibility pack
+# Next, type info - it's composed of 3 parts
+# 1: 'bigBed' indicates the basic track type 
+# 2: '12' indicates that there are 12 standard bigBed fields
+# 3: '+' indicates that there are fields beyond the standard ones
+#type bigBed 12 +
+type bigBed 5 .
+# the url to the bigBed file for this track
+# can also be a relative file path for files on the same server
+# e.g. bigDataUrl dataFiles/gtexCaviar.bb
+bigDataUrl phastConsElem470way.over650_chr7_155799529-155812871.bb
+# points to an html description page for that track
+html ../templatePage.html
+# The priority setting isn't "required", but we're using it to ensure this track shows up at the top
+# they must be an integer and lower numbers will be displayed first
+priority 1
